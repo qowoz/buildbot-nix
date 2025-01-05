@@ -20,6 +20,7 @@ class RepoConfig(BaseModel):
 class BranchConfig(BaseModel):
     lock_file: str = "flake.lock"
     attribute: str = "checks"
+    eval_worker_count: int = 0
 
     @classmethod
     async def extract_during_step(cls, buildstep: BuildStepShellMixin) -> Self:

@@ -676,7 +676,11 @@ class NixEvalCommand(buildstep.ShellMixin, steps.BuildStep):
             command=[
                 "nix-eval-jobs",
                 "--workers",
-                str(self.worker_count),
+                str(
+                    self.worker_count
+                    if branch_config.eval_worker_count == 0
+                    else branch_config.eval_worker_count
+                ),
                 "--max-memory-size",
                 str(self.max_memory_size),
                 "--option",
